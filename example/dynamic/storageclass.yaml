@@ -1,0 +1,18 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: eds-eds-csi-provisioner
+provisioner: eds.csi.block.sangfor.com
+parameters:
+  acl: "10.174.30.185"
+  csi.storage.k8s.io/node-publish-secret-name: 	eds-block-secret
+  csi.storage.k8s.io/node-publish-secret-namespace: 	default
+  csi.storage.k8s.io/provisioner-secret-name: 	eds-block-secret
+  csi.storage.k8s.io/provisioner-secret-namespace: 	default
+  desc: iscsi
+  fsType: ext4
+  iqn: iqn.2018-11.vmirq.com.sangfor.eds
+  policyId: MuWJr+acrOm7mOiupOetlueVpQ==            #base64编码
+  targetPortal: 10.174.41.36:3260
+  iscsiInterface: "default"
+reclaimPolicy: Delete

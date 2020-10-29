@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: eds-block-secret
+  namespace: default
+data:
+  restfulurl: aHR0cHM6Ly8xMC4xNzQuMzAuMTEw      #base64编码
+  restfulvolumeid: dGVzdA==                     #base64编码
+  restfulusername: dGVzdA==                     #base64编码
+  restfulpassword: dGVzdDEyMy4=                 #base64编码
+

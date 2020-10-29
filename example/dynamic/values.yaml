@@ -1,0 +1,73 @@
+global:
+  systemDefaultRegistry: ""
+
+EDS:
+  provisionerName: eds.csi.block.sangfor.com
+  restfulurl: https://10.174.30.110
+  restfulvolumeid: "test"
+  restfulusername: test
+  restfulpassword: test123.
+
+image:
+  iscsi:
+    repository: harbor.msa.io/vs/blockplugin
+    tag: v1.0.0
+    pullPolicy: IfNotPresent
+  attacher:
+    repository: harbor.msa.io/vs/csi-attacher
+    tag: v1.2.1
+    pullPolicy: IfNotPresent
+  nodeplugin:
+    repository: harbor.msa.io/vs/csi-node-driver-registrar
+    tag: v1.2.0
+    pullPolicy: IfNotPresent
+  provisioner:
+    repository: harbor.msa.io/vs/csi-provisioner
+    tag: v1.2.2
+    pullPolicy: IfNotPresent
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #  cpu: 100m
+  #  memory: 200Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 100Mi
+
+nodeSelector: {}
+
+annotations: {}
+
+tolerations: []
+  # - operator: Exists
+
+affinity: {}
+
+iscsid:
+  create:
+
+rbac:
+  # Specifies whether RBAC resources should be created
+  create: true
+
+serviceAccount:
+  # Specifies whether a ServiceAccount should be created
+  create: true
+  # The name of the ServiceAccount to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+
+storageClass:
+  create: true
+  acl: "10.174.13.80,10.174.13.81,10.174.13.82"
+  desc: "iscsi"
+  policyId: "2副本默认策略"
+  fsType: ext4
+  targetPortal: "10.174.41.36:3260"
+  iqn: "iqn.2018-11.vmirq.com.sangfor.eds"
+  iscsiInterface: "default"
+  reclaimPolicy: "Delete"
